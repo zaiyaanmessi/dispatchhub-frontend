@@ -269,7 +269,7 @@ export default function TrackingPage() {
                   >
                     <div className="flex items-center gap-2 mb-2">
                       <span className="text-lg">{getStatusIcon(location.status)}</span>
-                      <span className="font-medium text-gray-900 text-sm truncate">{location.user.name}</span>
+                      <span className="font-medium text-gray-900 text-sm truncate">    {location.user?.name || 'Unknown'} {/* ADD SAFETY CHECK */}</span>
                     </div>
                     <div className={`inline-block px-2 py-1 rounded-full text-xs font-medium ${getStatusColor(location.status)}`}>
                       {location.status.replace('_', ' ').toUpperCase()}
