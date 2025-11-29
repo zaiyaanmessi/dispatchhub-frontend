@@ -49,7 +49,7 @@ export default function TeamPage() {
 
   const fetchTeamMembers = async () => {
     try {
-      const response = await fetch('http://localhost:5001/api/users', {
+      const response = await fetch('https://dispatchhub-backend.onrender.com/api/users', {
         headers: {
           'Authorization': `Bearer ${token}`
         }
@@ -72,7 +72,7 @@ export default function TeamPage() {
     }
 
     try {
-      const response = await fetch('http://localhost:5001/api/auth/register', {
+      const response = await fetch('https://dispatchhub-backend.onrender.com/api/auth/register', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -109,7 +109,7 @@ export default function TeamPage() {
     }
 
     try {
-      const response = await fetch(`http://localhost:5001/api/users/${memberId}`, {
+      const response = await fetch(`https://dispatchhub-backend.onrender.com/api/users/${memberId}`, {
         method: 'DELETE',
         headers: {
           'Authorization': `Bearer ${token}`

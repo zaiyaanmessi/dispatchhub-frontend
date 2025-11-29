@@ -84,7 +84,7 @@ export default function WorkOrdersPage() {
 
   const fetchWorkOrders = async () => {
     try {
-      const response = await fetch('http://localhost:5001/api/workorders', {
+      const response = await fetch('https://dispatchhub-backend.onrender.com/api/workorders', {
         headers: {
           'Authorization': `Bearer ${token}`
         }
@@ -100,7 +100,7 @@ export default function WorkOrdersPage() {
 
   const fetchFieldWorkers = async () => {
     try {
-      const response = await fetch('http://localhost:5001/api/users?role=field_worker', {
+      const response = await fetch('https://dispatchhub-backend.onrender.com/api/users?role=field_worker', {
         headers: {
           'Authorization': `Bearer ${token}`
         }
@@ -151,7 +151,7 @@ export default function WorkOrdersPage() {
 
       console.log('Sending payload:', payload); // Debug log
 
-      const response = await fetch('http://localhost:5001/api/workorders', {
+      const response = await fetch('https://dispatchhub-backend.onrender.com/api/workorders', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -195,7 +195,7 @@ export default function WorkOrdersPage() {
 
   const handleStatusUpdate = async (orderId: string, newStatus: string) => {
     try {
-      const response = await fetch(`http://localhost:5001/api/workorders/${orderId}/status`, {
+      const response = await fetch(`https://dispatchhub-backend.onrender.com/api/workorders/${orderId}/status`, {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',

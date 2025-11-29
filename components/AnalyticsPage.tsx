@@ -56,12 +56,12 @@ export default function AnalyticsPage() {
       const headers = { 'Authorization': `Bearer ${token}` };
 
       const [statsRes, timelineRes, priorityRes, statusRes, workersRes, revenueRes] = await Promise.all([
-        fetch('http://localhost:5001/api/analytics/stats', { headers }),
-        fetch('http://localhost:5001/api/analytics/orders-timeline', { headers }),
-        fetch('http://localhost:5001/api/analytics/orders-by-priority', { headers }),
-        fetch('http://localhost:5001/api/analytics/orders-by-status', { headers }),
-        fetch('http://localhost:5001/api/analytics/top-workers', { headers }),
-        fetch('http://localhost:5001/api/analytics/revenue-timeline', { headers })
+        fetch('https://dispatchhub-backend.onrender.com/api/analytics/stats', { headers }),
+        fetch('https://dispatchhub-backend.onrender.com/api/analytics/orders-timeline', { headers }),
+        fetch('https://dispatchhub-backend.onrender.com/api/analytics/orders-by-priority', { headers }),
+        fetch('https://dispatchhub-backend.onrender.com/api/analytics/orders-by-status', { headers }),
+        fetch('https://dispatchhub-backend.onrender.com/api/analytics/top-workers', { headers }),
+        fetch('https://dispatchhub-backend.onrender.com/api/analytics/revenue-timeline', { headers })
       ]);
 
       setStats(await statsRes.json());

@@ -90,10 +90,10 @@ export default function TrackingPage() {
 
     try {
       const [locationsResponse, workOrdersResponse] = await Promise.all([
-        fetch('http://localhost:5001/api/locations', {
+        fetch('https://dispatchhub-backend.onrender.com/api/locations', {
           headers: { 'Authorization': `Bearer ${token}` }
         }),
-        fetch('http://localhost:5001/api/workorders?status=assigned&status=in_progress', {
+        fetch('https://dispatchhub-backend.onrender.com/api/workorders?status=assigned&status=in_progress', {
           headers: { 'Authorization': `Bearer ${token}` }
         })
       ]);
