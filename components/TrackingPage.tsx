@@ -101,10 +101,12 @@ export default function TrackingPage() {
       const locationsData = await locationsResponse.json();
       const workOrdersData = await workOrdersResponse.json();
 
-      setLocations(locationsData);
-      setWorkOrders(workOrdersData);
+      setLocations(Array.isArray(locationsData) ? locationsData : []);
+      setWorkOrders(Array.isArray(workOrdersData) ? workOrdersData : []);
     } catch (error) {
       console.error('Error fetching tracking data:', error);
+      setLocations([]);
+      setWorkOrders([]);
     } finally {
       if (!silent) setLoading(false);
     }
@@ -269,7 +271,9 @@ export default function TrackingPage() {
                   >
                     <div className="flex items-center gap-2 mb-2">
                       <span className="text-lg">{getStatusIcon(location.status)}</span>
-                      <span className="font-medium text-gray-900 text-sm truncate">    {location.user?.name || 'Unknown'} {/* ADD SAFETY CHECK */}</span>
+                      <span className="font-medium text-gray-900 text-sm truncate">
+                        {location.user?.name || 'Unknown Worker'}
+                      </span>
                     </div>
                     <div className={`inline-block px-2 py-1 rounded-full text-xs font-medium ${getStatusColor(location.status)}`}>
                       {location.status.replace('_', ' ').toUpperCase()}
@@ -337,7 +341,7 @@ export default function TrackingPage() {
               <div className="flex items-center gap-3">
                 <div className="text-4xl">{getStatusIcon(selectedLocation.status)}</div>
                 <div>
-                  <h2 className="text-xl font-bold text-gray-900">{selectedLocation.user.name}</h2>
+                  <h2 className="text-xl font-bold text-gray-900">{selectedLocation.user?.name || 'Unknown Worker'}</h2>
                   <span className={`inline-block px-2 py-1 rounded-full text-xs font-medium ${getStatusColor(selectedLocation.status)} mt-1`}>
                     {selectedLocation.status.replace('_', ' ').toUpperCase()}
                   </span>
@@ -354,10 +358,10 @@ export default function TrackingPage() {
             <div className="space-y-3">
               <div>
                 <h3 className="text-xs font-medium text-gray-500 uppercase">Email</h3>
-                <p className="text-sm text-gray-900 mt-1">{selectedLocation.user.email}</p>
+                <p className="text-sm text-gray-900 mt-1">{selectedLocation.user?.email || 'N/A'}</p>
               </div>
 
-              {selectedLocation.user.phone && (
+              {selectedLocation.user?.phone && (
                 <div>
                   <h3 className="text-xs font-medium text-gray-500 uppercase">Phone</h3>
                   <p className="text-sm text-gray-900 mt-1">{selectedLocation.user.phone}</p>
